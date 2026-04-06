@@ -399,7 +399,7 @@ function renderMap(el){
   el.innerHTML='<div class="map-wrap"><div id="mapEl"></div></div>';
   try{
     map=L.map('mapEl',{center:[36.5,127.8],zoom:7,zoomControl:false,attributionControl:false});
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/voyager/{z}/{x}/{y}{r}.png',{maxZoom:19,subdomains:'abcd'}).addTo(map);
+    L.tileLayer('https://{s}.basemaps.tile.openstreetmap.org/{z}/{x}/{y}{r}.png',{maxZoom:19,subdomains:'abcd'}).addTo(map);
     addMarkers();
   }catch(e){
     el.innerHTML='<div style="padding:40px;text-align:center"><div style="font-size:48px;margin-bottom:12px">🗺️</div><div style="font-size:16px;font-weight:700;color:#1b4332;margin-bottom:8px">지도를 불러오는 중...</div><p style="font-size:12px;color:#999">지도가 안 보이면 목록 탭을 이용해주세요</p><button onclick="switchTab(\'list\')" style="margin-top:16px;padding:10px 24px;background:#1b4332;color:#fff;border:none;border-radius:10px;font-size:13px;cursor:pointer">← 목록 보기</button></div>';
