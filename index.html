@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>노숙왕 👑 전국 차박 스팟 가이드</title>
+<meta name="description" content="노숙왕 - 전국 무료 차박·노지 캠핑 스팟 150곳+. 합법/묵인 표시, 편의시설, 꿀팁 총정리.">
+<meta name="keywords" content="차박,노지캠핑,무료캠핑장,차박스팟,오토캠핑,차박명당,무료야영장">
+<meta property="og:title" content="노숙왕 👑 전국 차박 스팟 가이드">
+<meta property="og:description" content="전국 150곳+ 차박 스팟을 한눈에! 합법/묵인 상태, 편의시설, 꿀팁까지.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ceochoiyj.github.io/nosukking/">
+<link rel="canonical" href="https://ceochoiyj.github.io/nosukking/">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- AdSense -->
+<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ID" crossorigin="anonymous"></script> -->
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#f7f5f0;--card:#fff;--forest:#1a3c2a;--forest-m:#2d5a3f;--forest-l:#3d7a55;
+  --sand:#c4a265;--sand-l:#d4b87a;--ember:#c75b39;--ember-l:#e07050;
+  --text:#1c1c1c;--sub:#555;--muted:#888;--light:#bbb;--pale:#d5d0c6;
+  --border:rgba(0,0,0,.08);--r:16px;--shadow:0 2px 12px rgba(0,0,0,.06);
+}
+html,body{height:100%;overflow:hidden;font-family:'Noto Sans KR',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+button{font-family:inherit;cursor:pointer}
+a{text-decoration:none;color:inherit}
+
+/* SPLASH */
+.splash{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--forest);transition:opacity .5s,visibility .5s}
+.splash.hide{opacity:0;visibility:hidden}
+.splash-crown{font-size:48px;animation:bounce 1s ease infinite}
+.splash-name{font-family:'Black Han Sans';font-size:36px;color:#fff;margin-top:8px;letter-spacing:2px}
+.splash-sub{font-size:12px;color:rgba(255,255,255,.4);margin-top:8px}
+.splash-bar{width:120px;height:3px;background:rgba(255,255,255,.15);border-radius:3px;margin-top:20px;overflow:hidden}
+.splash-bar::after{content:'';display:block;width:40%;height:100%;background:var(--sand);border-radius:3px;animation:load .8s ease-in-out infinite alternate}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes load{0%{transform:translateX(-10px)}100%{transform:translateX(80px)}}
+
+/* APP SHELL */
+.app{height:100%;display:flex;flex-direction:column;opacity:0;transition:opacity .3s}
+.app.show{opacity:1}
+
+/* HEADER */
+.hdr{flex-shrink:0;background:var(--card);border-bottom:1px solid var(--border);padding:0 16px;z-index:100}
+.hdr-row1{display:flex;align-items:center;height:52px}
+.logo{display:flex;align-items:center;gap:6px}
+.logo-crown{font-size:20px}
+.logo-name{font-family:'Black Han Sans';font-size:20px;color:var(--forest)}
+.logo-dot{width:5px;height:5px;border-radius:50%;background:var(--sand);margin:0 4px}
+.logo-sub{font-size:11px;color:var(--muted);font-weight:500}
+.hdr-badge{margin-left:auto;font-size:11px;font-weight:700;color:#fff;background:var(--forest);padding:4px 12px;border-radius:20px;letter-spacing:.5px}
+
+/* SEARCH */
+.search-wrap{position:relative;margin:4px 0 8px}
+.search-ico{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--light)}
+.search{width:100%;height:40px;border:1.5px solid var(--pale);border-radius:12px;padding:0 14px 0 36px;font-size:13px;outline:none;background:var(--bg);color:var(--text);transition:border .2s}
+.search:focus{border-color:var(--forest-m);background:var(--card)}
+.search::placeholder{color:var(--light)}
+
+/* CHIPS */
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none;-ms-overflow-style:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex-shrink:0;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;border:1.5px solid var(--pale);background:transparent;color:var(--sub);white-space:nowrap;transition:all .2s}
+.chip.on{background:var(--forest);color:#fff;border-color:var(--forest)}
+.chip.on-g{background:#16653a;color:#fff;border-color:#16653a}
+.chip.on-y{background:#a68520;color:#fff;border-color:#a68520}
+
+/* TABS */
+.tabs{display:flex;border-bottom:1px solid var(--border);background:var(--card)}
+.tab{flex:1;height:42px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;font-weight:600;color:var(--muted);border:none;background:none;border-bottom:2.5px solid transparent;transition:all .2s}
+.tab.on{color:var(--forest);border-bottom-color:var(--forest)}
+.tab svg{width:16px;height:16px}
+
+/* CONTENT */
+.content{flex:1;overflow:hidden;position:relative}
+.panel{position:absolute;inset:0;overflow-y:auto;transition:opacity .2s;-webkit-overflow-scrolling:touch}
+.panel.hide{opacity:0;pointer-events:none;z-index:0}
+.panel.show{opacity:1;pointer-events:auto;z-index:1}
+
+/* LIST */
+.list{padding:12px 16px 100px}
+.card{background:var(--card);border-radius:var(--r);padding:14px;margin-bottom:10px;box-shadow:var(--shadow);display:flex;gap:12px;align-items:flex-start;border:1px solid var(--border);transition:transform .15s,box-shadow .15s;cursor:pointer}
+.card:active{transform:scale(.985);box-shadow:0 1px 6px rgba(0,0,0,.04)}
+.card-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.card-body{flex:1;min-width:0}
+.card-head{display:flex;align-items:center;gap:6px;margin-bottom:3px}
+.card-name{font-size:14px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card-badge{font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;flex-shrink:0}
+.badge-g{background:#e6f4ea;color:#16653a}
+.badge-y{background:#fef3d0;color:#8a6d14}
+.card-meta{font-size:11px;color:var(--muted);margin-bottom:4px}
+.card-tip{font-size:11.5px;color:var(--sub);line-height:1.4}
+.card-arrow{color:var(--light);font-size:11px;align-self:center;flex-shrink:0}
+
+/* AD SLOT */
+.ad-slot{margin:8px 0;padding:14px;border:1px dashed var(--pale);border-radius:var(--r);text-align:center;font-size:10px;color:var(--light);background:rgba(255,255,255,.5)}
+
+/* COUPANG */
+.cpg-title{font-size:15px;font-weight:800;margin:20px 0 10px;color:var(--forest)}
+.cpg-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cpg-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px 10px;text-align:center;transition:transform .15s}
+.cpg-card:active{transform:scale(.97)}
+.cpg-emoji{font-size:28px;margin-bottom:4px}
+.cpg-name{font-size:12px;font-weight:700}
+.cpg-desc{font-size:10px;color:var(--muted);margin-bottom:6px}
+.cpg-link{font-size:11px;color:var(--ember);font-weight:700}
+.cpg-notice{font-size:8px;color:var(--light);text-align:center;margin-top:8px}
+
+/* SPONSOR */
+.sponsor{margin:24px 0;background:linear-gradient(135deg,var(--forest),#0f2418);border-radius:20px;padding:32px 20px;text-align:center}
+.sponsor-crown{font-size:36px;margin-bottom:8px}
+.sponsor-title{color:#fff;font-size:18px;font-weight:900;margin-bottom:6px}
+.sponsor-desc{color:rgba(255,255,255,.45);font-size:11px;margin-bottom:20px;line-height:1.5}
+.sponsor-box{background:rgba(255,255,255,.1);border-radius:14px;padding:14px 18px;margin-bottom:16px}
+.sponsor-bank{color:rgba(255,255,255,.45);font-size:10px;margin-bottom:4px}
+.sponsor-acct{color:#fff;font-size:20px;font-weight:900;letter-spacing:1px;font-family:'Black Han Sans'}
+.sponsor-btn{display:inline-flex;align-items:center;gap:6px;padding:12px 32px;background:var(--sand);color:var(--forest);border:none;border-radius:12px;font-size:14px;font-weight:800}
+.sponsor-btn:active{opacity:.85}
+
+/* FOOTER */
+.footer{padding:20px 0 40px;text-align:center;font-size:10px;color:var(--light);line-height:1.6}
+
+/* MAP */
+#mapContainer{position:absolute;inset:0}
+
+/* MAP OVERLAY */
+.map-legend{position:absolute;bottom:20px;left:12px;z-index:10;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-radius:12px;padding:10px 14px;box-shadow:0 2px 12px rgba(0,0,0,.12);font-size:11px}
+.map-legend-item{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.map-legend-item:last-child{margin-bottom:0}
+.map-legend-dot{width:10px;height:10px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 3px rgba(0,0,0,.2)}
+
+/* MY LOCATION BTN */
+.loc-btn{position:absolute;bottom:20px;right:12px;z-index:10;width:42px;height:42px;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border:none;border-radius:50%;box-shadow:0 2px 12px rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center}
+.loc-btn svg{width:20px;height:20px;color:var(--forest)}
+
+/* POPUP */
+.info-popup{position:fixed;bottom:0;left:0;right:0;z-index:200;background:var(--card);border-radius:20px 20px 0 0;box-shadow:0 -4px 20px rgba(0,0,0,.12);padding:20px 20px 32px;transform:translateY(100%);transition:transform .3s cubic-bezier(.32,.72,0,1)}
+.info-popup.open{transform:translateY(0)}
+.info-popup .handle{width:36px;height:4px;background:var(--pale);border-radius:4px;margin:0 auto 16px}
+.info-popup .p-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.info-popup .p-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.info-popup .p-name{font-size:16px;font-weight:800}
+.info-popup .p-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:8px}
+.info-popup .p-meta{font-size:12px;color:var(--muted);margin-bottom:8px}
+.info-popup .p-tip{font-size:13px;color:var(--sub);line-height:1.5;padding:10px 14px;background:var(--bg);border-radius:12px;margin-bottom:12px}
+.info-popup .p-nav{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:var(--forest);color:#fff;border:none;border-radius:12px;font-size:13px;font-weight:700}
+.overlay{position:fixed;inset:0;z-index:190;background:rgba(0,0,0,.3);opacity:0;visibility:hidden;transition:all .3s}
+.overlay.open{opacity:1;visibility:visible}
+
+@media(min-width:768px){
+  .list{max-width:560px;margin:0 auto}
+}
+</style>
+</head>
+<body>
+
+<!-- SPLASH -->
+<div class="splash" id="splash">
+  <div class="splash-crown">👑</div>
+  <div class="splash-name">노숙왕</div>
+  <div class="splash-sub">전국 차박 스팟 불러오는 중...</div>
+  <div class="splash-bar"></div>
+</div>
+
+<!-- APP -->
+<div class="app" id="app">
+  <!-- HEADER -->
+  <div class="hdr">
+    <div class="hdr-row1">
+      <div class="logo">
+        <span class="logo-crown">👑</span>
+        <span class="logo-name">노숙왕</span>
+        <span class="logo-dot"></span>
+        <span class="logo-sub">차박 가이드</span>
+      </div>
+      <div class="hdr-badge" id="badge">0곳</div>
+    </div>
+    <div class="search-wrap">
+      <svg class="search-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input class="search" id="searchInput" placeholder="지역, 스팟 이름, 키워드로 검색">
+    </div>
+    <div class="chips" id="regionChips"></div>
+    <div class="chips" id="filterChips"></div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab on" id="tabList" onclick="switchTab('list')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="4" cy="6" r="1" fill="currentColor"/><circle cx="4" cy="12" r="1" fill="currentColor"/><circle cx="4" cy="18" r="1" fill="currentColor"/></svg>
+      목록
+    </button>
+    <button class="tab" id="tabMap" onclick="switchTab('map')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      지도
+    </button>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+    <!-- LIST PANEL -->
+    <div class="panel show" id="listPanel">
+      <div class="list" id="listWrap"></div>
+    </div>
+    <!-- MAP PANEL -->
+    <div class="panel hide" id="mapPanel">
+      <div id="mapContainer"></div>
+      <div class="map-legend">
+        <div class="map-legend-item"><div class="map-legend-dot" style="background:#16653a"></div> 합법 (공식 야영장)</div>
+        <div class="map-legend-item"><div class="map-legend-dot" style="background:#c4a265"></div> 묵인 (스텔스 차박)</div>
+      </div>
+      <button class="loc-btn" onclick="goMyLocation()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL POPUP -->
+<div class="overlay" id="overlay" onclick="closePopup()"></div>
+<div class="info-popup" id="popup">
+  <div class="handle"></div>
+  <div id="popupContent"></div>
+</div>
+
+<!-- KAKAO MAP SDK - appkey를 쿼리스트링으로 전달 -->
+<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=a4655f2d8651a3b20e67090c3ba6b23b&autoload=false"></script>
+<script>
+// ============ DATA ============
+const D=[
+// === 강원 ===
+{n:"주문진 해변 공영주차장",r:"강원",v:"해변",l:"묵인",f:"🚻",t:"주문진항 인근, 야간 조용",la:37.8934,lo:128.8284},
+{n:"속초 영금정 해변",r:"강원",v:"해변",l:"묵인",f:"🚻",t:"등대+일출 명소",la:38.2078,lo:128.6012},
+{n:"양양 서피비치",r:"강원",v:"해변",l:"묵인",f:"🚻🚿",t:"서핑+차박, 주차비 있음",la:38.0312,lo:128.7178},
+{n:"강릉 안목해변",r:"강원",v:"해변",l:"묵인",f:"🚻",t:"커피거리 인접",la:37.7732,lo:128.9512},
+{n:"삼척 맹방해변",r:"강원",v:"해변",l:"묵인",f:"🚻",t:"넓은 백사장, 한적",la:37.4245,lo:129.1834},
+{n:"고성 화진포해변",r:"강원",v:"해변",l:"묵인",f:"🚻🚿",t:"호수+해변 동시",la:38.4678,lo:128.4412},
+{n:"동해 추암해변",r:"강원",v:"해변",l:"묵인",f:"🚻",t:"촛대바위 일출",la:37.4878,lo:129.1578},
+{n:"춘천 의암호",r:"강원",v:"호수",l:"묵인",f:"🚻",t:"호반도시 야경",la:37.8812,lo:127.7245},
+{n:"홍천 수타사 계곡",r:"강원",v:"계곡",l:"묵인",f:"🚻",t:"수타사 탐방로",la:37.7378,lo:128.0978},
+{n:"인제 내린천",r:"강원",v:"강변",l:"묵인",f:"🚻",t:"래프팅 후 차박",la:38.0612,lo:128.1734},
+{n:"평창 대관령 양떼목장 인근",r:"강원",v:"산",l:"묵인",f:"🚻",t:"고원 밤하늘",la:37.6878,lo:128.7312},
+{n:"정선 아우라지",r:"강원",v:"강변",l:"묵인",f:"🚻",t:"두물머리, 아리랑 감성",la:37.3912,lo:128.7012},
+{n:"영월 동강 어라연",r:"강원",v:"강변",l:"묵인",f:"🚻",t:"절경, 진입로 비포장",la:37.2078,lo:128.5278},
+{n:"원주 소금산 출렁다리",r:"강원",v:"산",l:"묵인",f:"🚻",t:"주차장 넓음",la:37.3278,lo:127.9812},
+{n:"태백 황지연못",r:"강원",v:"호수",l:"묵인",f:"🚻",t:"낙동강 발원지",la:37.1612,lo:128.9878},
+// === 경기 ===
+{n:"가평 자라섬 오토캠핑장",r:"경기",v:"강변",l:"합법",f:"🚻🚰🔥🔌",t:"공식 캠핑장, 재즈축제 유명",la:37.8178,lo:127.5312},
+{n:"양평 두물머리",r:"경기",v:"강변",l:"묵인",f:"🚻",t:"안개+일출 성지",la:37.5312,lo:127.3312},
+{n:"포천 산정호수",r:"경기",v:"호수",l:"묵인",f:"🚻",t:"명성산 아래, 가을 억새",la:38.0678,lo:127.2845},
+{n:"가평 청평호",r:"경기",v:"호수",l:"묵인",f:"🚻",t:"수상레저 후 차박",la:37.7412,lo:127.4278},
+{n:"양주 장흥 자생수목원 인근",r:"경기",v:"산",l:"묵인",f:"🚻",t:"서울 근교, 숲길",la:37.7212,lo:126.9512},
+{n:"파주 임진강 자유로 휴게소",r:"경기",v:"강변",l:"묵인",f:"🚻",t:"한강 합류점 조망",la:37.7878,lo:126.7312},
+{n:"안성 금광호수",r:"경기",v:"호수",l:"묵인",f:"🚻",t:"조용, 낚시",la:37.0178,lo:127.1878},
+{n:"여주 강천섬",r:"경기",v:"강변",l:"묵인",f:"🚻",t:"남한강 유채꽃밭",la:37.2978,lo:127.6278},
+{n:"연천 재인폭포",r:"경기",v:"계곡",l:"묵인",f:"🚻",t:"주상절리, 한탄강",la:38.0912,lo:127.0512},
+// === 충북 ===
+{n:"충주호 탄금대",r:"충북",v:"호수",l:"묵인",f:"🚻",t:"중앙탑 야경",la:36.9712,lo:127.9412},
+{n:"단양 도담삼봉",r:"충북",v:"강변",l:"묵인",f:"🚻",t:"기암괴석, 야경",la:36.9712,lo:128.3612},
+{n:"제천 의림지",r:"충북",v:"호수",l:"묵인",f:"🚻",t:"역사 저수지, 산책로",la:37.1412,lo:128.2178},
+{n:"옥천 금강 휴게소",r:"충북",v:"강변",l:"묵인",f:"🚻",t:"대청호 인근",la:36.3012,lo:127.5612},
+{n:"괴산 화양구곡",r:"충북",v:"계곡",l:"묵인",f:"🚻",t:"우암 송시열 유적",la:36.7978,lo:127.8978},
+// === 충남 ===
+{n:"태안 만리포해변",r:"충남",v:"해변",l:"묵인",f:"🚻🚿",t:"서해 대표 서핑",la:36.7912,lo:126.1412},
+{n:"태안 몽산포해변",r:"충남",v:"해변",l:"묵인",f:"🚻",t:"넓은 주차장, 한적",la:36.7112,lo:126.2178},
+{n:"보령 대천해수욕장",r:"충남",v:"해변",l:"묵인",f:"🚻🚿",t:"머드축제, 주차장 넓음",la:36.3212,lo:126.5178},
+{n:"서천 춘장대해수욕장",r:"충남",v:"해변",l:"묵인",f:"🚻",t:"소나무숲+해변",la:36.0878,lo:126.5612},
+{n:"공주 공산성",r:"충남",v:"강변",l:"묵인",f:"🚻",t:"금강+야경",la:36.4678,lo:126.9778},
+{n:"부여 부소산성",r:"충남",v:"강변",l:"묵인",f:"🚻",t:"백마강 일몰",la:36.2912,lo:126.9112},
+{n:"서산 삼길포항",r:"충남",v:"해변",l:"묵인",f:"🚻",t:"어항 + 횟집",la:36.8478,lo:126.2912},
+// === 전북 ===
+{n:"부안 변산해수욕장",r:"전북",v:"해변",l:"묵인",f:"🚻🚿",t:"변산반도 국립공원",la:35.6512,lo:126.5112},
+{n:"고창 구시포해변",r:"전북",v:"해변",l:"묵인",f:"🚻",t:"서해 차박 성지",la:35.5078,lo:126.4878},
+{n:"무주 덕유산 리조트 주차장",r:"전북",v:"산",l:"묵인",f:"🚻",t:"비수기 한적, 산 공기",la:35.8912,lo:127.7378},
+{n:"진안 마이산",r:"전북",v:"산",l:"묵인",f:"🚻",t:"탑사+일출",la:35.7678,lo:127.4178},
+{n:"남원 광한루원 인근",r:"전북",v:"강변",l:"묵인",f:"🚻",t:"요천 산책로",la:35.4178,lo:127.3912},
+{n:"임실 옥정호 붕어섬",r:"전북",v:"호수",l:"묵인",f:"🚻",t:"호수 위 섬, 비경",la:35.5512,lo:127.3012},
+// === 전남 ===
+{n:"여수 장등해변",r:"전남",v:"해변",l:"묵인",f:"🚻",t:"차박 성지, 낭만포차 인근",la:34.7312,lo:127.7512},
+{n:"여수 종포해양공원",r:"전남",v:"해변",l:"묵인",f:"🚻",t:"해상케이블카 야경",la:34.7478,lo:127.7312},
+{n:"순천만 국가정원",r:"전남",v:"강변",l:"묵인",f:"🚻",t:"일몰 갈대밭",la:34.9278,lo:127.5112},
+{n:"해남 송호해변",r:"전남",v:"해변",l:"묵인",f:"🚻",t:"땅끝마을 인근",la:34.3212,lo:126.5412},
+{n:"완도 명사십리해변",r:"전남",v:"해변",l:"합법",f:"🚻🚿🔥",t:"무료 야영 가능",la:34.3012,lo:126.7878},
+{n:"담양 메타세쿼이아길",r:"전남",v:"산",l:"묵인",f:"🚻",t:"가로수길 산책",la:35.3178,lo:126.9812},
+{n:"보성 율포해변",r:"전남",v:"해변",l:"묵인",f:"🚻🚿",t:"녹차밭+해변",la:34.7112,lo:127.1112},
+{n:"광양 매화마을",r:"전남",v:"산",l:"묵인",f:"🚻",t:"봄 매화 축제",la:35.0712,lo:127.6712},
+{n:"신안 증도 태평염전",r:"전남",v:"해변",l:"묵인",f:"🚻",t:"슬로시티, 갯벌",la:34.9712,lo:126.1278},
+{n:"진도 세방낙조",r:"전남",v:"해변",l:"묵인",f:"🚻",t:"서해 일몰 1위",la:34.3878,lo:126.1612},
+// === 경북 ===
+{n:"포항 영일대해변",r:"경북",v:"해변",l:"묵인",f:"🚻🚿",t:"야경+해맞이",la:36.0612,lo:129.3878},
+{n:"경주 감포해변",r:"경북",v:"해변",l:"묵인",f:"🚻",t:"감포항 회 타운",la:35.7878,lo:129.5078},
+{n:"울진 망양해수욕장",r:"경북",v:"해변",l:"묵인",f:"🚻",t:"한적한 동해",la:36.9912,lo:129.4112},
+{n:"영덕 장사해수욕장",r:"경북",v:"해변",l:"묵인",f:"🚻",t:"동해 스카이워크",la:36.5078,lo:129.4278},
+{n:"안동 하회마을 주차장",r:"경북",v:"강변",l:"묵인",f:"🚻",t:"낙동강+고택",la:36.5378,lo:128.5178},
+{n:"청송 주산지",r:"경북",v:"호수",l:"묵인",f:"🚻",t:"물에 잠긴 사과나무",la:36.3878,lo:129.0278},
+{n:"문경 가은 오토캠핑장",r:"경북",v:"산",l:"합법",f:"🚻🚰🔥🔌",t:"공식 무료, 시설 좋음",la:36.6178,lo:128.1278},
+{n:"김천 직지사 인근",r:"경북",v:"산",l:"묵인",f:"🚻",t:"황악산 단풍",la:36.1178,lo:128.0478},
+// === 경남 ===
+{n:"거제 학동 흑진주해변",r:"경남",v:"해변",l:"묵인",f:"🚻🚿",t:"몽돌해변, 일출",la:34.7878,lo:128.6678},
+{n:"통영 달아공원",r:"경남",v:"해변",l:"묵인",f:"🚻",t:"일몰 1번지",la:34.8012,lo:128.3512},
+{n:"남해 상주은모래해변",r:"경남",v:"해변",l:"묵인",f:"🚻🚿",t:"남해 대표 해변",la:34.7212,lo:127.9178},
+{n:"남해 독일마을",r:"경남",v:"해변",l:"묵인",f:"🚻",t:"이국적 풍경",la:34.7512,lo:127.9012},
+{n:"사천 실안낙조공원",r:"경남",v:"해변",l:"묵인",f:"🚻",t:"갯벌+일몰",la:34.9378,lo:128.0612},
+{n:"합천 해인사 주차장",r:"경남",v:"산",l:"묵인",f:"🚻",t:"가야산 산림욕",la:35.8012,lo:128.0978},
+{n:"밀양 표충사",r:"경남",v:"산",l:"묵인",f:"🚻",t:"재약산 사계절",la:35.5212,lo:128.9278},
+{n:"하동 평사리공원",r:"경남",v:"강변",l:"묵인",f:"🚻",t:"섬진강 벚꽃",la:35.1512,lo:127.7812},
+{n:"창녕 우포늪",r:"경남",v:"호수",l:"묵인",f:"🚻",t:"생태습지, 새벽안개",la:35.5478,lo:128.4278},
+{n:"함양 상림공원",r:"경남",v:"산",l:"묵인",f:"🚻",t:"천년숲 산책",la:35.5212,lo:127.7278},
+// === 부산 ===
+{n:"해운대 달맞이고개",r:"부산",v:"해변",l:"묵인",f:"🚻",t:"문탠로드 야경",la:35.1578,lo:129.1812},
+{n:"기장 일광해변",r:"부산",v:"해변",l:"묵인",f:"🚻",t:"한적한 동부산",la:35.2578,lo:129.2312},
+{n:"다대포해수욕장",r:"부산",v:"해변",l:"묵인",f:"🚻🚿",t:"일몰분수, 주차장 넓음",la:35.0478,lo:128.9678},
+{n:"을숙도 생태공원",r:"부산",v:"강변",l:"묵인",f:"🚻",t:"낙동강 하구, 철새",la:35.0778,lo:128.9312},
+{n:"송정해수욕장",r:"부산",v:"해변",l:"묵인",f:"🚻",t:"서핑 스팟, 카페거리",la:35.1778,lo:129.2012},
+// === 울산 ===
+{n:"간절곶",r:"울산",v:"해변",l:"묵인",f:"🚻",t:"한반도 첫 일출",la:35.3612,lo:129.3612},
+{n:"진하해수욕장",r:"울산",v:"해변",l:"묵인",f:"🚻🚿",t:"명선도 트레킹",la:35.3412,lo:129.3312},
+{n:"대왕암공원",r:"울산",v:"해변",l:"묵인",f:"🚻",t:"해안절벽 산책",la:35.4478,lo:129.4312},
+// === 대구 ===
+{n:"팔공산 갓바위 주차장",r:"대구",v:"산",l:"묵인",f:"🚻",t:"해맞이+산림욕",la:35.9912,lo:128.7012},
+{n:"앞산전망대",r:"대구",v:"산",l:"묵인",f:"🚻",t:"대구 야경",la:35.8212,lo:128.5912},
+{n:"비슬산 자연휴양림",r:"대구",v:"산",l:"합법",f:"🚻🚰🔥",t:"참꽃 군락, 공식 야영",la:35.7312,lo:128.5178},
+// === 대전 ===
+{n:"대청호 오백리길",r:"대전",v:"호수",l:"묵인",f:"🚻",t:"호수뷰 드라이브",la:36.4078,lo:127.4812},
+{n:"계족산 황톳길",r:"대전",v:"산",l:"묵인",f:"🚻",t:"맨발 힐링",la:36.3912,lo:127.4278},
+{n:"장태산 자연휴양림",r:"대전",v:"산",l:"합법",f:"🚻🚰🔥🔌",t:"메타세쿼이아숲, 공식",la:36.2578,lo:127.3012},
+// === 세종 ===
+{n:"세종호수공원",r:"세종",v:"호수",l:"묵인",f:"🚻",t:"세종시 랜드마크",la:36.5112,lo:127.0012},
+{n:"합강공원",r:"세종",v:"강변",l:"묵인",f:"🚻",t:"금강+미호천 합류",la:36.5278,lo:127.0278},
+// === 광주 ===
+{n:"무등산 증심사",r:"광주",v:"산",l:"묵인",f:"🚻",t:"도심 속 등반",la:35.1278,lo:126.9678},
+{n:"광주호 생태원",r:"광주",v:"호수",l:"묵인",f:"🚻",t:"메타세쿼이아 가로수길",la:35.1912,lo:126.9112},
+// === 인천 ===
+{n:"을왕리해변",r:"인천",v:"해변",l:"묵인",f:"🚻🚿",t:"서울근교, 일몰",la:37.4478,lo:126.3678},
+{n:"왕산해변",r:"인천",v:"해변",l:"묵인",f:"🚻",t:"을왕리 옆 한적한 해변",la:37.4412,lo:126.3578},
+{n:"무의도 하나개해변",r:"인천",v:"해변",l:"묵인",f:"🚻",t:"섬 차박, 갯벌체험",la:37.3812,lo:126.3912},
+{n:"강화 동막해변",r:"인천",v:"해변",l:"묵인",f:"🚻",t:"갯벌+일몰, 머드",la:37.5812,lo:126.3612},
+// === 서울 ===
+{n:"난지캠핑장",r:"서울",v:"강변",l:"합법",f:"🚻🚰🔥🔌🚿",t:"한강 공식 캠핑장",la:37.5678,lo:126.8778},
+{n:"여의도 한강공원 주차장",r:"서울",v:"강변",l:"묵인",f:"🚻",t:"도심 야경, 주차비",la:37.5278,lo:126.9312},
+{n:"중랑캠핑숲",r:"서울",v:"강변",l:"합법",f:"🚻🚰🔥🔌",t:"도심 속 공식 캠핑",la:37.6012,lo:127.0712},
+{n:"북한산 우이령길 인근",r:"서울",v:"산",l:"묵인",f:"🚻",t:"예약 필수, 숲길",la:37.6578,lo:126.9878},
+// === 제주 ===
+{n:"함덕해수욕장",r:"제주",v:"해변",l:"묵인",f:"🚻🚿",t:"에메랄드빛 차박 성지",la:33.5432,lo:126.6696},
+{n:"월정리해변",r:"제주",v:"해변",l:"묵인",f:"🚻",t:"카페+풍력발전기 뷰",la:33.5567,lo:126.7975},
+{n:"협재해수욕장",r:"제주",v:"해변",l:"묵인",f:"🚻🚿",t:"비양도 석양",la:33.3939,lo:126.2396},
+{n:"성산일출봉 주차장",r:"제주",v:"해변",l:"묵인",f:"🚻",t:"새벽 등반+일출",la:33.4612,lo:126.9412},
+{n:"중문 색달해변",r:"제주",v:"해변",l:"묵인",f:"🚻🚿",t:"서핑+일몰",la:33.2445,lo:126.4112},
+{n:"사려니숲길",r:"제주",v:"산",l:"합법",f:"🚻",t:"치유의 숲길",la:33.4278,lo:126.7012},
+{n:"표선해수욕장",r:"제주",v:"해변",l:"묵인",f:"🚻🚿",t:"가족 해변, 넓은 주차장",la:33.3278,lo:126.8412},
+{n:"김녕해변",r:"제주",v:"해변",l:"묵인",f:"🚻",t:"한적한 동쪽 해변",la:33.5578,lo:126.7578},
+{n:"1100고지 습지",r:"제주",v:"산",l:"묵인",f:"🚻",t:"해발 1100m 고원",la:33.3612,lo:126.5278},
+{n:"돈내코 야영장",r:"제주",v:"계곡",l:"합법",f:"🚻🚰🔥🚿",t:"무료, 샤워장 완비",la:33.3012,lo:126.5912},
+{n:"금능해변",r:"제주",v:"해변",l:"묵인",f:"🚻",t:"소나무 아래 차박",la:33.3912,lo:126.2345},
+{n:"이호테우해변",r:"제주",v:"해변",l:"묵인",f:"🚻",t:"조랑말 등대 야경",la:33.4978,lo:126.4512},
+{n:"세화해변",r:"제주",v:"해변",l:"묵인",f:"🚻",t:"플리마켓+해녀",la:33.5278,lo:126.8612},
+// === 추가 데이터 ===
+{n:"양양 낙산해변",r:"강원",v:"해변",l:"묵인",f:"🚻🚿",t:"낙산사 일출",la:38.1178,lo:128.6312},
+{n:"강릉 경포해변",r:"강원",v:"해변",l:"묵인",f:"🚻🚿",t:"경포호+해변",la:37.8012,lo:128.9078},
+{n:"삼척 장호항",r:"강원",v:"해변",l:"묵인",f:"🚻",t:"투명카약, 어촌체험",la:37.2512,lo:129.3478},
+{n:"동해 망상해변",r:"강원",v:"해변",l:"합법",f:"🚻🚰🔥🔌🚿",t:"오토캠핑장 공식",la:37.5612,lo:129.1178},
+{n:"속초 대포항",r:"강원",v:"해변",l:"묵인",f:"🚻",t:"설악산 입구, 횟집",la:38.1712,lo:128.5978},
+{n:"홍천 삼봉자연휴양림",r:"강원",v:"산",l:"합법",f:"🚻🚰🔥🔌",t:"공식 야영, 숲속",la:37.7012,lo:128.2312},
+{n:"횡성 청태산자연휴양림",r:"강원",v:"산",l:"합법",f:"🚻🚰🔥🔌",t:"잣나무숲 힐링",la:37.4412,lo:128.1878},
+{n:"화천 파로호",r:"강원",v:"호수",l:"묵인",f:"🚻",t:"산천어축제",la:38.1478,lo:127.7412},
+{n:"포천 비둘기낭폭포",r:"경기",v:"계곡",l:"묵인",f:"🚻",t:"한탄강 주상절리",la:38.0412,lo:127.0712},
+{n:"양평 세미원",r:"경기",v:"강변",l:"묵인",f:"🚻",t:"연꽃, 남한강변",la:37.5212,lo:127.3112},
+{n:"이천 설봉공원",r:"경기",v:"호수",l:"묵인",f:"🚻",t:"도자기 축제장",la:37.2712,lo:127.4378},
+{n:"태안 꽃지해변",r:"충남",v:"해변",l:"묵인",f:"🚻🚿",t:"할미바위 일몰 명소",la:36.6412,lo:126.3012},
+{n:"예산 덕산온천 인근",r:"충남",v:"산",l:"묵인",f:"🚻",t:"온천+수덕사",la:36.6878,lo:126.6278},
+{n:"청양 칠갑산 자연휴양림",r:"충남",v:"산",l:"합법",f:"🚻🚰🔥🔌",t:"공식 야영장",la:36.3578,lo:126.8512},
+{n:"영동 물한계곡",r:"충북",v:"계곡",l:"묵인",f:"🚻",t:"민주지산 계곡",la:36.0312,lo:127.8712},
+{n:"보은 속리산",r:"충북",v:"산",l:"묵인",f:"🚻",t:"법주사, 정이품송",la:36.5412,lo:127.8612},
+{n:"강진 남미륵사 해변",r:"전남",v:"해변",l:"묵인",f:"🚻",t:"가우도 출렁다리",la:34.5078,lo:126.7978},
+{n:"목포 갓바위 해안",r:"전남",v:"해변",l:"묵인",f:"🚻",t:"목포대교 야경",la:34.7778,lo:126.3812},
+{n:"구례 섬진강 산수유마을",r:"전남",v:"강변",l:"묵인",f:"🚻",t:"봄 산수유, 가을 단풍",la:35.2178,lo:127.5078},
+{n:"장흥 정남진",r:"전남",v:"해변",l:"묵인",f:"🚻",t:"토요시장+해변",la:34.6178,lo:126.9078},
+{n:"고창 선운사",r:"전북",v:"산",l:"묵인",f:"🚻",t:"동백숲 산책",la:35.5012,lo:126.5812},
+{n:"군산 새만금방조제",r:"전북",v:"해변",l:"묵인",f:"🚻",t:"세계최장 방조제",la:35.8278,lo:126.5412},
+{n:"포항 호미곶",r:"경북",v:"해변",l:"묵인",f:"🚻",t:"상생의 손, 일출",la:36.0778,lo:129.5712},
+{n:"영주 무섬마을",r:"경북",v:"강변",l:"묵인",f:"🚻",t:"내성천 물돌이마을",la:36.8378,lo:128.6178},
+{n:"봉화 청량산",r:"경북",v:"산",l:"묵인",f:"🚻",t:"12봉 절경",la:36.8012,lo:128.9312},
+{n:"거제 바람의 언덕",r:"경남",v:"해변",l:"묵인",f:"🚻",t:"풍차+해안",la:34.7478,lo:128.5912},
+{n:"창원 진해 여좌천",r:"경남",v:"강변",l:"묵인",f:"🚻",t:"벚꽃 로망스다리",la:35.1378,lo:128.7178},
+{n:"산청 대원사계곡",r:"경남",v:"계곡",l:"묵인",f:"🚻",t:"지리산 계곡",la:35.3212,lo:127.8678},
+{n:"양산 통도사 인근",r:"경남",v:"산",l:"묵인",f:"🚻",t:"불보사찰, 솔숲",la:35.4778,lo:129.0612},
+{n:"김해 봉하마을",r:"경남",v:"강변",l:"묵인",f:"🚻",t:"습지+자연생태",la:35.2712,lo:128.9612},
+{n:"기장 오시리아해변",r:"부산",v:"해변",l:"묵인",f:"🚻",t:"롯데월드+해변",la:35.1912,lo:129.2178},
+{n:"태종대",r:"부산",v:"해변",l:"묵인",f:"🚻",t:"해안절벽+등대",la:35.0512,lo:129.0812},
+{n:"울산 대왕별 아름드리",r:"울산",v:"산",l:"합법",f:"🚻🚰🔥🔌🚿",t:"공식 캠핑, 별 관측",la:35.4712,lo:129.2312},
+{n:"수성못",r:"대구",v:"호수",l:"묵인",f:"🚻",t:"도심 호수, 야경",la:35.8312,lo:128.6212},
+{n:"가평 잣향기푸른숲",r:"경기",v:"산",l:"합법",f:"🚻🚰🔥",t:"잣나무 공식 캠핑",la:37.8612,lo:127.4878},
+{n:"동두천 소요산",r:"경기",v:"산",l:"묵인",f:"🚻",t:"가을 단풍 명소",la:37.9278,lo:127.0778},
+{n:"화성 궁평리해변",r:"경기",v:"해변",l:"묵인",f:"🚻",t:"서해, 갯벌체험",la:37.1178,lo:126.7178},
+{n:"제주 우도 산호해변",r:"제주",v:"해변",l:"묵인",f:"🚻",t:"배시간 체크 필수",la:33.5078,lo:126.9578},
+{n:"제주 한림공원 인근",r:"제주",v:"해변",l:"묵인",f:"🚻",t:"협재동굴+해변",la:33.3778,lo:126.2578},
+];
+
+const VE={"해변":"🏖️","강변":"🏞️","계곡":"⛰️","산":"🌲","호수":"💧"};
+const VC={"해변":"#3b82c4","강변":"#4a8c6a","계곡":"#6a8c5e","산":"#4d7a52","호수":"#5a8ca0"};
+const REGIONS=["전체","서울","경기","인천","강원","충북","충남","대전","세종","전북","전남","광주","경북","경남","대구","부산","울산","제주"];
+const VIEWS=["전체","해변","강변","계곡","산","호수"];
+const LEGALS=["전체","합법","묵인"];
+
+let kakaoMap=null, kakaoMarkers=[], kakaoInfoW=null;
+let curTab="list", fR="전체", fV="전체", fL="전체", sQ="";
+
+// ============ INIT ============
+document.addEventListener('DOMContentLoaded',()=>{
+  renderChips();
+  renderList();
+  document.getElementById('searchInput').addEventListener('input',e=>{
+    sQ=e.target.value.trim().toLowerCase();
+    renderList();
+    if(curTab==='map') renderMapMarkers();
+  });
+  // Hide splash
+  setTimeout(()=>{
+    document.getElementById('splash').classList.add('hide');
+    document.getElementById('app').classList.add('show');
+  },900);
+});
+
+// ============ FILTERS ============
+function filtered(){
+  return D.filter(s=>{
+    if(fR!=="전체"&&s.r!==fR) return false;
+    if(fV!=="전체"&&s.v!==fV) return false;
+    if(fL!=="전체"&&s.l!==fL) return false;
+    if(sQ){
+      const q=sQ;
+      if(!((s.n+s.r+s.v+s.t+s.f).toLowerCase().includes(q))) return false;
+    }
+    return true;
+  });
+}
+
+function setFilter(type,val){
+  if(type==='r') fR=val;
+  else if(type==='v') fV=val;
+  else if(type==='l') fL=val;
+  renderChips();
+  renderList();
+  if(curTab==='map') renderMapMarkers();
+}
+
+function renderChips(){
+  let rh='';
+  REGIONS.forEach(r=>{rh+=`<button class="chip${fR===r?' on':''}" onclick="setFilter('r','${r}')">${r}</button>`;});
+  document.getElementById('regionChips').innerHTML=rh;
+
+  let fh='';
+  VIEWS.forEach(v=>{fh+=`<button class="chip${fV===v?' on':''}" onclick="setFilter('v','${v}')">${VE[v]||'🗺️'} ${v}</button>`;});
+  fh+='<span style="width:1px;height:20px;background:var(--pale);flex-shrink:0;margin:0 4px"></span>';
+  LEGALS.forEach(l=>{
+    const cls=fL===l?(l==='합법'?' on-g':l==='묵인'?' on-y':' on'):'';
+    fh+=`<button class="chip${cls}" onclick="setFilter('l','${l}')">${l==='합법'?'🟢':l==='묵인'?'🟡':'🗺️'} ${l}</button>`;
+  });
+  document.getElementById('filterChips').innerHTML=fh;
+
+  const f=filtered();
+  document.getElementById('badge').textContent=f.length+'곳';
+}
+
+// ============ LIST ============
+function renderList(){
+  const f=filtered();
+  const w=document.getElementById('listWrap');
+  if(f.length===0){
+    w.innerHTML='<div style="padding:60px 20px;text-align:center"><div style="font-size:48px;margin-bottom:12px">🔍</div><div style="font-size:15px;font-weight:700;color:var(--sub);margin-bottom:6px">검색 결과가 없어요</div><div style="font-size:12px;color:var(--muted)">다른 조건으로 찾아보세요</div></div>';
+    return;
+  }
+  let h='';
+  f.forEach((s,i)=>{
+    const bc=s.l==='합법'?'badge-g':'badge-y';
+    const ic=VC[s.v]||'#666';
+    h+=`<div class="card" onclick="openPopup(${D.indexOf(s)})">
+      <div class="card-icon" style="background:${ic}15;color:${ic}">${VE[s.v]||'📍'}</div>
+      <div class="card-body">
+        <div class="card-head">
+          <span class="card-name">${s.n}</span>
+          <span class="card-badge ${bc}">${s.l}</span>
+        </div>
+        <div class="card-meta">${s.r} · ${s.f}</div>
+        <div class="card-tip">💡 ${s.t}</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </div>`;
+    // Ad slot every 8 cards
+    if((i+1)%8===0) h+='<div class="ad-slot">AD · 광고 영역</div>';
+  });
+
+  // Coupang
+  h+=`<div class="cpg-title">🔥 차박 필수템</div>
+  <div class="cpg-grid">
+    <a class="cpg-card" href="https://link.coupang.com/YOUR_1" target="_blank" rel="noopener noreferrer">
+      <div class="cpg-emoji">🛏️</div><div class="cpg-name">차박 에어매트</div><div class="cpg-desc">자충식 SUV 전용</div><div class="cpg-link">최저가 보기 →</div>
+    </a>
+    <a class="cpg-card" href="https://link.coupang.com/YOUR_2" target="_blank" rel="noopener noreferrer">
+      <div class="cpg-emoji">🪟</div><div class="cpg-name">차량 커튼</div><div class="cpg-desc">완벽 차광 6P</div><div class="cpg-link">최저가 보기 →</div>
+    </a>
+    <a class="cpg-card" href="https://link.coupang.com/YOUR_3" target="_blank" rel="noopener noreferrer">
+      <div class="cpg-emoji">🔋</div><div class="cpg-name">파워뱅크</div><div class="cpg-desc">220V 대용량</div><div class="cpg-link">최저가 보기 →</div>
+    </a>
+    <a class="cpg-card" href="https://link.coupang.com/YOUR_4" target="_blank" rel="noopener noreferrer">
+      <div class="cpg-emoji">🔦</div><div class="cpg-name">캠핑 랜턴</div><div class="cpg-desc">무드등 겸용</div><div class="cpg-link">최저가 보기 →</div>
+    </a>
+  </div>
+  <div class="cpg-notice">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다</div>`;
+
+  // Sponsor
+  h+=`<div class="sponsor">
+    <div class="sponsor-crown">👑</div>
+    <div class="sponsor-title">노숙왕을 응원해주세요</div>
+    <div class="sponsor-desc">여러분의 후원이 전국 스팟 탐사와<br>서비스 운영에 사용됩니다</div>
+    <div class="sponsor-box">
+      <div class="sponsor-bank">하나은행</div>
+      <div class="sponsor-acct">294-890589-20207</div>
+    </div>
+    <button class="sponsor-btn" onclick="event.stopPropagation();copyAcct()">📋 계좌번호 복사</button>
+  </div>`;
+
+  // Footer
+  h+=`<div class="footer">
+    © 2026 노숙왕 👑<br>
+    차박은 안전하고 매너 있게!<br>
+    쓰레기는 되가져가기 🙏<br><br>
+    <span style="color:var(--pale)">묵인 스팟은 지자체 방침에 따라 변경될 수 있습니다</span>
+  </div>`;
+
+  w.innerHTML=h;
+}
+
+// ============ TABS ============
+function switchTab(tab){
+  curTab=tab;
+  document.getElementById('tabList').classList.toggle('on',tab==='list');
+  document.getElementById('tabMap').classList.toggle('on',tab==='map');
+  document.getElementById('listPanel').classList.toggle('show',tab==='list');
+  document.getElementById('listPanel').classList.toggle('hide',tab!=='list');
+  document.getElementById('mapPanel').classList.toggle('show',tab==='map');
+  document.getElementById('mapPanel').classList.toggle('hide',tab!=='map');
+  if(tab==='map' && !kakaoMap) initKakaoMap();
+  if(tab==='map' && kakaoMap) renderMapMarkers();
+}
+
+// ============ KAKAO MAP ============
+function initKakaoMap(){
+  if(typeof kakao==='undefined'||!kakao.maps){
+    document.getElementById('mapContainer').innerHTML='<div style="display:flex;align-items:center;justify-content:center;height:100%;flex-direction:column;gap:12px;color:var(--muted);font-size:13px"><div style="font-size:40px">🗺️</div>카카오맵을 불러오는 중...</div>';
+    // Retry after SDK loads
+    setTimeout(initKakaoMap, 1000);
+    return;
+  }
+  kakao.maps.load(()=>{
+    const container=document.getElementById('mapContainer');
+    container.innerHTML='';
+    const options={
+      center:new kakao.maps.LatLng(36.5,127.5),
+      level:13
+    };
+    kakaoMap=new kakao.maps.Map(container,options);
+    kakaoInfoW=new kakao.maps.InfoWindow({zIndex:1});
+    renderMapMarkers();
+    // Resize fix
+    setTimeout(()=>kakaoMap.relayout(),100);
+  });
+}
+
+function renderMapMarkers(){
+  if(!kakaoMap) return;
+  // Clear
+  kakaoMarkers.forEach(m=>m.setMap(null));
+  kakaoMarkers=[];
+  if(kakaoInfoW) kakaoInfoW.close();
+
+  const f=filtered();
+  f.forEach(s=>{
+    const pos=new kakao.maps.LatLng(s.la,s.lo);
+    const color=s.l==='합법'?'%2316653a':'%23c4a265';
+    const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="28" height="36" viewBox="0 0 28 36"><path d="M14 0C6.3 0 0 6.3 0 14c0 10.5 14 22 14 22s14-11.5 14-22C28 6.3 21.7 0 14 0z" fill="${color}" stroke="white" stroke-width="2"/><circle cx="14" cy="13" r="5" fill="white" opacity="0.9"/></svg>`;
+    const imgSrc='data:image/svg+xml;charset=utf-8,'+svg;
+    const imgSize=new kakao.maps.Size(28,36);
+    const imgOpt={offset:new kakao.maps.Point(14,36)};
+    const markerImage=new kakao.maps.MarkerImage(imgSrc,imgSize,imgOpt);
+    const marker=new kakao.maps.Marker({position:pos,image:markerImage,map:kakaoMap});
+
+    kakao.maps.event.addListener(marker,'click',()=>{
+      openPopup(D.indexOf(s));
+    });
+
+    kakaoMarkers.push(marker);
+  });
+}
+
+function flyToSpot(idx){
+  const s=D[idx];
+  if(!s) return;
+  switchTab('map');
+  setTimeout(()=>{
+    if(kakaoMap){
+      const pos=new kakao.maps.LatLng(s.la,s.lo);
+      kakaoMap.setLevel(5);
+      kakaoMap.panTo(pos);
+    }
+  },200);
+}
+
+function goMyLocation(){
+  if(!navigator.geolocation){alert('위치 서비스를 지원하지 않습니다');return;}
+  navigator.geolocation.getCurrentPosition(p=>{
+    if(kakaoMap){
+      const pos=new kakao.maps.LatLng(p.coords.latitude,p.coords.longitude);
+      kakaoMap.setLevel(8);
+      kakaoMap.panTo(pos);
+    }
+  },()=>alert('위치 정보를 가져올 수 없습니다'));
+}
+
+// ============ POPUP ============
+function openPopup(idx){
+  const s=D[idx];
+  if(!s) return;
+  const bc=s.l==='합법'?'badge-g':'badge-y';
+  const ic=VC[s.v]||'#666';
+  const naverUrl=`https://map.naver.com/v5/search/${encodeURIComponent(s.n)}`;
+  const kakaoUrl=`https://map.kakao.com/link/search/${encodeURIComponent(s.n)}`;
+
+  document.getElementById('popupContent').innerHTML=`
+    <div class="p-head">
+      <div class="p-icon" style="background:${ic}15;color:${ic};font-size:24px">${VE[s.v]||'📍'}</div>
+      <div>
+        <div style="display:flex;align-items:center;gap:6px"><span class="p-name">${s.n}</span><span class="p-badge ${bc}">${s.l}</span></div>
+        <div class="p-meta">${s.r} · ${VE[s.v]} ${s.v} · ${s.f}</div>
+      </div>
+    </div>
+    <div class="p-tip">💡 ${s.t}${s.l==='묵인'?'<br><br>⚠️ 묵인 스팟입니다. 텐트 설치·취사는 자제하고, 차 안에서만 조용히 이용해주세요.':''}</div>
+    <div style="display:flex;gap:8px">
+      <a href="${naverUrl}" target="_blank" rel="noopener" class="p-nav" style="flex:1;justify-content:center;text-decoration:none">🧭 네이버지도</a>
+      <a href="${kakaoUrl}" target="_blank" rel="noopener" class="p-nav" style="flex:1;justify-content:center;background:var(--sand);color:var(--forest);text-decoration:none">🗺️ 카카오맵</a>
+    </div>
+    <button onclick="flyToSpot(${idx})" style="width:100%;margin-top:8px;padding:10px;background:var(--bg);border:1.5px solid var(--pale);border-radius:12px;font-size:13px;font-weight:600;color:var(--sub)">📍 지도에서 보기</button>
+  `;
+  document.getElementById('overlay').classList.add('open');
+  document.getElementById('popup').classList.add('open');
+}
+
+function closePopup(){
+  document.getElementById('overlay').classList.remove('open');
+  document.getElementById('popup').classList.remove('open');
+}
+
+function copyAcct(){
+  navigator.clipboard.writeText('29489058920207').then(()=>{
+    alert('✅ 계좌번호 복사 완료!\n하나은행 294-890589-20207');
+  }).catch(()=>{
+    prompt('계좌번호를 복사해주세요:','29489058920207');
+  });
+}
+</script>
+</body>
+</html>
